@@ -9,7 +9,7 @@ import (
 )
 
 func main() {
-	fmt.Println("avoid error")
+	var input int
 
 	f, err := os.Open("problems.csv")
 	if err != nil {
@@ -27,7 +27,20 @@ func main() {
 		if err != nil {
 			log.Fatal(err)
 		}
-		fmt.Printf("%v\n", rec)
+		fmt.Printf("%v\n", rec[0])
+		fmt.Print("Please enter the answer: ")
+		fmt.Scan(&input)
 	}
 
 }
+
+/*
+func userInput() string {
+	var input string
+
+	fmt.Println("Answer:")
+	fmt.Scan(&input)
+
+	return input
+}
+*/
