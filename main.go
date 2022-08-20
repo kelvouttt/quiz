@@ -8,19 +8,16 @@ import (
 	"os"
 )
 
+var score int
+var incorrect int
+var input string
+
 func main() {
-	var score int
-	var incorrect int
-	var input string
+	file, _ := openFile()
+	defer file.Close()
 
-	f, err := os.Open("problems.csv")
-	if err != nil {
-		log.Fatal(err)
-	}
+	csvReader := csv.NewReader(file)
 
-	defer f.Close()
-
-	csvReader := csv.NewReader(f)
 	for {
 		rec, err := csvReader.Read()
 		if err == io.EOF {
@@ -54,3 +51,11 @@ func userInput() string {
 	return input
 }
 */
+
+func openFile() (*os.File, error) {
+	f, err := os.Open("problems.csv")
+	if err != nil {
+		log.Fatal(err)
+	}
+	return f, err
+}
